@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.kyrxtz.flightservices.repositories.PassengerRepository;
 import com.kyrxtz.flightservices.repositories.ReservationRepository;
 
 @RestController
+@CrossOrigin
 public class ReservationController {
     
     @Autowired
@@ -38,6 +40,11 @@ public class ReservationController {
     public List<Flight> getFlights(@RequestParam("from") String from, @RequestParam("to") String to, 
             @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date departureDate){
         return flightRepository.findFlights(from, to, departureDate);
+    }
+
+    @RequestMapping(value = "/flights/{id}", method = RequestMethod.GET)
+    public Flight findFlight(@PathVariable("id") int id) {
+        return flightRepository.findById(id).get();
     }
 
     @RequestMapping(value = "/reservations", method = RequestMethod.POST)
