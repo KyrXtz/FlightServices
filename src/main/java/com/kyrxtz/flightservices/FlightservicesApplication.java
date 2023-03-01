@@ -1,9 +1,10 @@
-package com.kyrxtz.flightservices.flightservices;
+package com.kyrxtz.flightservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+
 public class FlightservicesApplication {
 
 	public static void main(String[] args) {

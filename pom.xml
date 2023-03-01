@@ -8,7 +8,7 @@
 		<version>3.0.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kyrxtz.flightservices</groupId>
+	<groupId>com.kyrxtz</groupId>
 	<artifactId>flightservices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>flightservices</name>
@@ -35,6 +35,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -1,4 +1,4 @@
-package com.kyrxtz.flightservices.flightservices;
+package com.kyrxtz.flightservices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
