@@ -1,7 +1,8 @@
 package com.kyrxtz.flightservices.entities;
 
-import java.security.Timestamp;
 import java.sql.Date;
+import java.sql.Timestamp;
+
 import jakarta.persistence.Entity;
 
 @Entity
