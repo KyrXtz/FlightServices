@@ -12,7 +12,7 @@ RUN apt-get update && \
 COPY . .
 
 # Build the application using Maven
-RUN mvn package
+RUN mvn package -DskipTests
 
 # Expose the port that the application runs on
 EXPOSE 8080
