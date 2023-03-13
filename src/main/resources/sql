@@ -1,7 +1,15 @@
-CREATE DATABASE RESERVATION
+CREATE DATABASE FLIGHTSERVICES
 
-USE RESERVATION
+USE FLIGHTSERVICES
 
+CREATE TABLE AIRPORTS
+(
+  ID INT  NOT NULL AUTO_INCREMENT,
+  NAME VARCHAR(100)  NOT NULL, 
+  COUNTRY VARCHAR(50)  NOT NULL,
+  CODE VARCHAR(10)  NOT NULL UNIQUE,
+  PRIMARY KEY (ID)
+)
 
 CREATE TABLE FLIGHT
 (
@@ -12,8 +20,12 @@ CREATE TABLE FLIGHT
   ARRIVAL_CITY VARCHAR(20)  NOT NULL,
   DATE_OF_DEPARTURE DATE  NOT NULL,
   ESTIMATED_DEPARTURE_TIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
-  PRIMARY KEY (ID)
+  PRIMARY KEY (ID),
+  FOREIGN KEY (DEPARTURE_CITY) REFERENCES AIRPORTS(CODE) ON DELETE CASCADE,
+  FOREIGN KEY (ARRIVAL_CITY) REFERENCES AIRPORTS(CODE) ON DELETE CASCADE
 )
+
+
 
 CREATE TABLE PASSENGER
 (
@@ -45,42 +57,129 @@ SELECT * FROM FLIGHT
 
 SELECT * FROM RESERVATION
 
-
 DROP TABLE RESERVATION
 DROP TABLE PASSENGER
 DROP TABLE FLIGHT
+DROP TABLE AIRPORTS
 
-DROP DATABASE RESERVATION
+DROP DATABASE FLIGHTSERVICES
 
 use reservation;
 
+INSERT INTO airports (code, name, country)
+VALUES
+  ('AUS', 'Austin-Bergstrom International Airport', 'United States'),
+  ('DAL', 'Dallas Love Field', 'United States'),
+  ('MJT', 'Mytilene', 'Greece'),
+  ('ATL', 'Hartsfield-Jackson Atlanta International Airport', 'United States'),
+  ('LAX', 'Los Angeles International Airport', 'United States'),
+  ('ORD', 'O''Hare International Airport', 'United States'),
+  ('DFW', 'Dallas/Fort Worth International Airport', 'United States'),
+  ('DXB', 'Dubai International Airport', 'United Arab Emirates'),
+  ('HND', 'Tokyo International Airport (Haneda)', 'Japan'),
+  ('CDG', 'Charles de Gaulle Airport', 'France'),
+  ('PEK', 'Beijing Capital International Airport', 'China'),
+  ('JFK', 'John F. Kennedy International Airport', 'United States'),
+  ('IST', 'Istanbul Atatürk Airport', 'Turkey'),
+  ('CAN', 'Guangzhou Baiyun International Airport', 'China'),
+  ('PVG', 'Shanghai Pudong International Airport', 'China'),
+  ('SYD', 'Sydney Airport', 'Australia'),
+  ('ICN', 'Incheon International Airport', 'South Korea'),
+  ('SFO', 'San Francisco International Airport', 'United States'),
+  ('EWR', 'Newark Liberty International Airport', 'United States'),
+  ('SHA', 'Shanghai Hongqiao International Airport', 'China'),
+  ('MAD', 'Adolfo Suárez Madrid–Barajas Airport', 'Spain'),
+  ('YYZ', 'Toronto Pearson International Airport', 'Canada'),
+  ('MNL', 'Ninoy Aquino International Airport', 'Philippines'),
+  ('SIN', 'Singapore Changi Airport', 'Singapore'),
+  ('BKK', 'Suvarnabhumi Airport', 'Thailand'),
+  ('CGK', 'Soekarno–Hatta International Airport', 'Indonesia'),
+  ('KUL', 'Kuala Lumpur International Airport', 'Malaysia'),
+  ('VIE', 'Vienna International Airport', 'Austria'),
+  ('GRU', 'São Paulo–Guarulhos International Airport', 'Brazil'),
+  ('LIM', 'Jorge Chávez International Airport', 'Peru'),
+  ('MCO', 'Orlando International Airport', 'United States'),
+  ('SVO', 'Sheremetyevo International Airport', 'Russia'),
+  ('BOM', 'Chhatrapati Shivaji Maharaj International Airport', 'India'),
+  ('CUN', 'Cancún International Airport', 'Mexico'),
+  ('LGA', 'LaGuardia Airport', 'United States'),
+  ('HEL', 'Helsinki Airport', 'Finland'),
+  ('MIA', 'Miami International Airport', 'United States'),
+  ('LGW', 'Gatwick Airport', 'United Kingdom'),
+  ('DEN', 'Denver International Airport', 'United States'),
+  ('MUC', 'Munich Airport', 'Germany'),
+  ('IAH', 'George Bush Intercontinental Airport', 'United States'),
+  ('AKL', 'Auckland Airport', 'New Zealand'),
+  ('OSL', 'Oslo Airport, Gardermoen', 'Norway'),
+  ('BOG', 'El Dorado International Airport', 'Colombia'),
+  ('ARN', 'Stockholm Arlanda Airport', 'Sweden'),
+  ('SCL', 'Comodoro Arturo Merino Benítez International Airport', 'Chile'),
+  ('BLR', 'Kempegowda International Airport', 'India'),
+  ('ZRH', 'Zürich Airport', 'Switzerland'),
+  ('HKG', 'Hong Kong International Airport', 'China'),
+  ('NRT', 'Narita International Airport', 'Japan'),
+  ('LHR', 'Heathrow Airport', 'United Kingdom'),
+  ('JNB', 'O. R. Tambo International Airport', 'South Africa'),
+  ('GIG', 'Rio de Janeiro–Galeão International Airport', 'Brazil'),
+  ('YVR', 'Vancouver International Airport', 'Canada'),
+  ('MEL', 'Melbourne Airport', 'Australia'),
+  ('EZE', 'Ministro Pistarini International Airport', 'Argentina'),
+  ('LIS', 'Lisbon Airport', 'Portugal'),
+  ('JED', 'King Abdulaziz International Airport', 'Saudi Arabia'),
+  ('DEL', 'Indira Gandhi International Airport', 'India'),
+  ('CPH', 'Copenhagen Airport', 'Denmark'),
+  ('PRG', 'Václav Havel Airport Prague', 'Czech Republic'),
+  ('ATH', 'Eleftherios Venizelos International Airport', 'Greece'),
+  ('KIX', 'Kansai International Airport', 'Japan'),
+  ('GVA', 'Geneva Airport', 'Switzerland'),
+  ('OTP', 'Henri Coandă International Airport', 'Romania'),
+  ('NCE', 'Nice Côte d\'Azur Airport', 'France'),
+  ('HAM', 'Hamburg Airport', 'Germany'),
+  ('BUD', 'Budapest Ferenc Liszt International Airport', 'Hungary'),
+  ('MXP', 'Milan Malpensa Airport', 'Italy'),
+  ('BRU', 'Brussels Airport', 'Belgium'),
+  ('GDL', 'Guadalajara International Airport', 'Mexico'),
+  ('BOO', 'Bodø Airport', 'Norway'),
+  ('TXL', 'Berlin Tegel Airport', 'Germany'),
+  ('BNE', 'Brisbane Airport', 'Australia'),
+  ('AMS', 'Amsterdam Airport Schiphol', 'Netherlands'),
+  ('FRA', 'Frankfurt Airport', 'Germany'),
+  ('FCO', 'Leonardo da Vinci–Fiumicino Airport', 'Italy'),
+  ('MEX', 'Mexico City International Airport', 'Mexico'),
+  ('GMP', 'Gimpo International Airport', 'South Korea'),
+  ('TPE', 'Taiwan Taoyuan International Airport', 'Taiwan'),
+  ('DUS', 'Düsseldorf Airport', 'Germany'),
+  ('BCN', 'Barcelona–El Prat Airport', 'Spain');
+
+  
+
 insert into flight values(1,'AA1','American Airlines','AUS',
-'NYC',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 03:14:07');
+'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 03:14:07');
 
 insert into flight values(2,'AA2','American Airlines','AUS',
-'NYC',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 05:14:07');
+'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 05:14:07');
 
 insert into flight values(3,'AA3','American Airlines','AUS',
-'NYC',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 06:14:07');
+'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 06:14:07');
 
 insert into flight values(4,'SW1','South West','AUS',
-'NYC',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 07:14:07');
+'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 07:14:07');
 
-insert into flight values(5,'UA1','United Airlines','NYC',
+insert into flight values(5,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 10:14:07');
 
-insert into flight values(6,'UA1','United Airlines','NYC',
+insert into flight values(6,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 10:14:07');
 
 insert into flight values(7,'SW1','South West','AUS',
-'NYC',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 07:14:07');
+'JFK',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 07:14:07');
 
 insert into flight values(8,'SW2','South West','AUS',
-'NYC',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 09:14:07');
+'JFK',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 09:14:07');
 
 
-insert into flight values(9,'SW3','South West','NYC',
+insert into flight values(9,'SW3','South West','JFK',
 'DAL',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 10:14:07');
 
-insert into flight values(10,'UA1','United Airlines','NYC',
+insert into flight values(10,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 10:14:07');
