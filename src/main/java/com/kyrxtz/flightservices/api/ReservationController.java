@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kyrxtz.flightservices.dtos.CreateReservationRequest;
 import com.kyrxtz.flightservices.dtos.UpdateReservationRequest;
+import com.kyrxtz.flightservices.entities.Airports;
 import com.kyrxtz.flightservices.entities.Flight;
 import com.kyrxtz.flightservices.entities.Passenger;
 import com.kyrxtz.flightservices.entities.Reservation;
+import com.kyrxtz.flightservices.repositories.AirportsRepository;
 import com.kyrxtz.flightservices.repositories.FlightRepository;
 import com.kyrxtz.flightservices.repositories.PassengerRepository;
 import com.kyrxtz.flightservices.repositories.ReservationRepository;
@@ -35,6 +37,14 @@ public class ReservationController {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    AirportsRepository airportsRepository;
+
+    @RequestMapping(value = "/airports", method = RequestMethod.GET)
+    public List<Airports> getAirports(){
+        return airportsRepository.findAll();
+    }
 
     @RequestMapping(value = "/flights", method = RequestMethod.GET)
     public List<Flight> getFlights(@RequestParam("from") String from, @RequestParam("to") String to, 
