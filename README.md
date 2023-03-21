@@ -24,9 +24,15 @@
 <li><code>docker exec -it flightservicesserver bash</code></li>
  <li><code>mysql -u root -p</code></li> </ol>
  </li>
+ <li>Optionally run these commands to create a new user<ol>
+  <li><code>CREATE USER 'sa'@'flightservices' IDENTIFIED BY 'your-password';</code></li>
+<li><code>GRANT ALL PRIVILEGES ON *.* TO 'sa'@'flightservices';</code></li>
+<li><code>FLUSH PRIVILEGES;</code></li>
+  <li>Change the username and password appropriately in <code>application.properties</code></li>
+ </li> </ol>
 <li>Run the commands present in the sql file to create the database.</li>
 <li>Navigate to the root directory of the project and build the image <br>
- <code>docker build -t app .</code></li>
+ <code>docker build -t flightservices .</code></li>
  <li>Run the image <br>
- <code>docker run app </code></li>
+ <code>docker run --hostname flightservices --name=flightservices flightservices </code></li>
  </ol>
