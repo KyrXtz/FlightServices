@@ -1,6 +1,6 @@
-CREATE DATABASE FLIGHTSERVICES
+CREATE DATABASE FLIGHTSERVICES;
 
-USE FLIGHTSERVICES
+USE FLIGHTSERVICES;
 
 CREATE TABLE AIRPORTS
 (
@@ -9,7 +9,7 @@ CREATE TABLE AIRPORTS
   COUNTRY VARCHAR(50)  NOT NULL,
   CODE VARCHAR(10)  NOT NULL UNIQUE,
   PRIMARY KEY (ID)
-)
+);
 
 CREATE TABLE FLIGHT
 (
@@ -23,7 +23,7 @@ CREATE TABLE FLIGHT
   PRIMARY KEY (ID),
   FOREIGN KEY (DEPARTURE_CITY) REFERENCES AIRPORTS(CODE) ON DELETE CASCADE,
   FOREIGN KEY (ARRIVAL_CITY) REFERENCES AIRPORTS(CODE) ON DELETE CASCADE
-)
+);
 
 
 
@@ -36,7 +36,7 @@ CREATE TABLE PASSENGER
   EMAIL VARCHAR(50),
   PHONE VARCHAR(10),
   PRIMARY KEY (ID)
-)
+);
 
 CREATE TABLE RESERVATION
 (
@@ -49,13 +49,14 @@ CREATE TABLE RESERVATION
   PRIMARY KEY (ID),
   FOREIGN KEY (PASSENGER_ID) REFERENCES PASSENGER(ID) ON DELETE CASCADE,
   FOREIGN KEY (FLIGHT_ID) REFERENCES FLIGHT(ID)
-)
+);
+SELECT * FROM AIRPORTS;
 
-SELECT * FROM PASSENGER 
+SELECT * FROM PASSENGER ;
 
-SELECT * FROM FLIGHT
+SELECT * FROM FLIGHT;
 
-SELECT * FROM RESERVATION
+SELECT * FROM RESERVATION;
 
 DROP TABLE RESERVATION
 DROP TABLE PASSENGER
@@ -64,9 +65,7 @@ DROP TABLE AIRPORTS
 
 DROP DATABASE FLIGHTSERVICES
 
-use reservation;
-
-INSERT INTO airports (code, name, country)
+INSERT INTO AIRPORTS (CODE, NAME, COUNTRY)
 VALUES
   ('AUS', 'Austin-Bergstrom International Airport', 'United States'),
   ('DAL', 'Dallas Love Field', 'United States'),
@@ -133,7 +132,6 @@ VALUES
   ('KIX', 'Kansai International Airport', 'Japan'),
   ('GVA', 'Geneva Airport', 'Switzerland'),
   ('OTP', 'Henri Coandă International Airport', 'Romania'),
-  ('NCE', 'Nice Côte d\'Azur Airport', 'France'),
   ('HAM', 'Hamburg Airport', 'Germany'),
   ('BUD', 'Budapest Ferenc Liszt International Airport', 'Hungary'),
   ('MXP', 'Milan Malpensa Airport', 'Italy'),
@@ -153,33 +151,33 @@ VALUES
 
   
 
-insert into flight values(1,'AA1','American Airlines','AUS',
+insert into FLIGHT values(1,'AA1','American Airlines','AUS',
 'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 03:14:07');
 
-insert into flight values(2,'AA2','American Airlines','AUS',
+insert into FLIGHT values(2,'AA2','American Airlines','AUS',
 'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 05:14:07');
 
-insert into flight values(3,'AA3','American Airlines','AUS',
+insert into FLIGHT values(3,'AA3','American Airlines','AUS',
 'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 06:14:07');
 
-insert into flight values(4,'SW1','South West','AUS',
+insert into FLIGHT values(4,'SW1','South West','AUS',
 'JFK',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 07:14:07');
 
-insert into flight values(5,'UA1','United Airlines','JFK',
+insert into FLIGHT values(5,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 10:14:07');
 
-insert into flight values(6,'UA1','United Airlines','JFK',
+insert into FLIGHT values(6,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-05', '%Y-%m-%d'),'2023-09-05 10:14:07');
 
-insert into flight values(7,'SW1','South West','AUS',
+insert into FLIGHT values(7,'SW1','South West','AUS',
 'JFK',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 07:14:07');
 
-insert into flight values(8,'SW2','South West','AUS',
+insert into FLIGHT values(8,'SW2','South West','AUS',
 'JFK',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 09:14:07');
 
 
-insert into flight values(9,'SW3','South West','JFK',
+insert into FLIGHT values(9,'SW3','South West','JFK',
 'DAL',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 10:14:07');
 
-insert into flight values(10,'UA1','United Airlines','JFK',
+insert into FLIGHT values(10,'UA1','United Airlines','JFK',
 'DAL',STR_TO_DATE('2023-09-06', '%Y-%m-%d'),'2023-09-06 10:14:07');
