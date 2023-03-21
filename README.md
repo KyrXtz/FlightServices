@@ -8,7 +8,7 @@
 <h2>How to Install</h2>
 <p>To install the application, follow these steps:</p>
 <ol><li>Clone the repository to your local machine using the following command:</li></ol>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="!whitespace-pre hljs language-java">https://github.com/&lt;username&gt;/FlightServiceBackend.git<span class="hljs-keyword">package</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="!whitespace-pre hljs language-java">git clone https://github.com/KyrXtz/FlightServicesBackend<span class="hljs-keyword">package</span>
 </code>
 <ol start="2"><li><p>Navigate to the project root directory.</p></li>
 <li>Run the following command to start the application:</li>
