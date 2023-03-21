@@ -20,7 +20,7 @@
 <ol>
 <li><p>Run these commands to get the latest mysql server docker image.</p>
 <ol><li><code>docker pull mysql/mysql-server:latest </code></li>
-<li><code>docker run -p 3306:3306 --hostname flightservicesserver -e MYSQL_ROOT_PASSWORD=&lt;your-password&gt; -d --name=flightservicesserver mysql/mysql-server:latest </code></li>
+<li><code>docker run -p 3306:3306 --hostname flightservicesserver -e MYSQL_ROOT_PASSWORD=&lt;your-password&gt; -d --name=flightservicesserver mysql/mysql-server:latest mysqld --lower_case_table_names=1 </code></li>
 <li><code>docker exec -it flightservicesserver bash</code></li>
  <li><code>mysql -u root -p</code></li> </ol>
  </li>
