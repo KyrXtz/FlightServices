@@ -34,5 +34,5 @@
 <li>Navigate to the root directory of the project and build the image <br>
  <code>docker build -t flightservices .</code></li>
  <li>Run the image <br>
- <code>docker run --hostname flightservices --name=flightservices flightservices </code></li>
+ <code>docker run --hostname flightservices --name=flightservices --link flightservicesserver flightservices </code></li>
  </ol>
