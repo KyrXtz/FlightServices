@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install required packages for building and running the application
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk maven
+    apt-get install -y openjdk-17-jdk maven libtcnative-1
 
 # Copy the application source code to the container
 COPY . .
@@ -18,4 +18,4 @@ RUN mvn package -DskipTests
 EXPOSE 8080
 
 # Start the application
-CMD ["java", "-jar", "target/flightservices.jar"]
+CMD ["java", "-jar", "target/flightservices-1.jar"]
