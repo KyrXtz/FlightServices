@@ -25,8 +25,8 @@
  <li><code>mysql -u root -p</code></li> </ol>
  </li>
  <li>Optionally run these commands to create a new user<ol>
-  <li><code>CREATE USER 'sa'@'flightservices' IDENTIFIED BY 'your-password';</code></li>
-<li><code>GRANT ALL PRIVILEGES ON *.* TO 'sa'@'flightservices';</code></li>
+  <li><code>CREATE USER 'sa'@'%' IDENTIFIED BY 'your-password';</code></li>
+<li><code>GRANT ALL PRIVILEGES ON *.* TO 'sa'@'%';</code></li>
 <li><code>FLUSH PRIVILEGES;</code></li>
   <li>Change the username and password appropriately in <code>application.properties</code></li>
  </li> </ol>
