@@ -27,7 +27,7 @@ import com.kyrxtz.flightservices.repositories.ReservationRepository;
 
 @RestController
 @CrossOrigin
-public class ReservationController {
+public class FlightServicesController {
     
     @Autowired
     FlightRepository flightRepository;
