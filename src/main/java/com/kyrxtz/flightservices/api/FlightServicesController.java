@@ -1,5 +1,6 @@
 package com.kyrxtz.flightservices.api;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,8 @@ import com.kyrxtz.flightservices.repositories.AirportsRepository;
 import com.kyrxtz.flightservices.repositories.FlightRepository;
 import com.kyrxtz.flightservices.repositories.PassengerRepository;
 import com.kyrxtz.flightservices.repositories.ReservationRepository;
+import com.kyrxtz.flightservices.services.EmailService;
+import com.kyrxtz.flightservices.services.HashingService;
 
 @RestController
 @CrossOrigin
@@ -40,6 +43,12 @@ public class FlightServicesController {
 
     @Autowired
     AirportsRepository airportsRepository;
+    
+    @Autowired
+    EmailService emailService;
+
+    @Autowired
+    HashingService hashingService;
 
     @RequestMapping(value = "/airports", method = RequestMethod.GET)
     public List<Airports> getAirports(){
@@ -77,12 +86,27 @@ public class FlightServicesController {
         reservation.setPassenger(savedPassenger);
         reservation.setCheckedIn(false);
 
-        return reservationRepository.save(reservation);
+        reservation = reservationRepository.save(reservation);
+        reservation.setEncryptedId(hashingService.Encrypt(reservation.getId()));
+
+        try {
+            emailService.Send(request.getPassengerEmail(),
+             reservation.getEncryptedId(),
+             reservation.getFlight().getOperatingAirlines(),
+             reservation.getFlight().getDepartureCity(),
+             reservation.getFlight().getArrivalCity(),
+             reservation.getFlight().getEstimatedDepartureTime().toLocalDateTime());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
     }
 
     @RequestMapping(value = "/reservations/{id}", method = RequestMethod.GET)
-    public Reservation findReservation(@PathVariable("id") int id){
-        return reservationRepository.findById(id).get();
+    public Reservation findReservation(@PathVariable("id") String id){
+        Integer decryptedId = hashingService.Decrypt(id);
+        return reservationRepository.findById(decryptedId).get();
     }
 
     @RequestMapping(value = "/reservations", method = RequestMethod.PUT)

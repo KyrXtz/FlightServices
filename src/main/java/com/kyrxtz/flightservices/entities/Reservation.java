@@ -2,6 +2,7 @@ package com.kyrxtz.flightservices.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Reservation extends AbstractEntity {
@@ -12,7 +13,16 @@ public class Reservation extends AbstractEntity {
     private Flight flight;  
     @OneToOne
     private Passenger passenger;
+    @Transient
+    private String encryptedId;
 
+    public String getEncryptedId() {
+        return encryptedId;
+    }
+    public void setEncryptedId(String encryptedId) {
+        this.encryptedId = encryptedId;
+    }
+    
     public Flight getFlight() {
         return flight;
     }
