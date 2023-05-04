@@ -17,7 +17,7 @@ public class DeleteExpiredFlightsJobService {
     @Scheduled(cron = "0 0 0 * * *", zone = "Europe/Athens")
     public void deleteExpiredFlights() {
         System.out.println("Starting deleteExpiredFlights Job. Date: "+ LocalDate.now());
-        LocalDate yesterday = LocalDate.now().plusDays(1);
+        LocalDate yesterday = LocalDate.now().minusDays(1);
         flightService.deleteFlightsBeforeDate(yesterday);
         System.out.println("Succesful finish of deleteExpiredFlights Job.");
     }
