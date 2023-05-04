@@ -12,33 +12,25 @@ public class HashingService {
     }
 
     private String HashAlgorithm(Integer input) {
-        int base = 36; 
-        int maxDigits = 6;
-
-        long hash = input * base * base;
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < maxDigits; i++) {
-            int remainder = (int) (hash % base);
-            char c = (char) (remainder < 10 ? '0' + remainder : 'A' + (remainder - 10));
-            sb.insert(0, c);
-            hash /= base;
-        }
-
-        return sb.toString();
+        int row = input + 1;
+        
+        int value = (int) (Math.pow(row, 3) + Math.pow(row, 2) + Math.pow(row, 1) + 1);
+        String hexString = Integer.toHexString(value).toUpperCase();
+        return hexString.replaceFirst("^0+(?!$)", "");
     }
 
     private Integer DecryptHashAlgorithm(String hash) {
-        int base = 36;
-        int maxDigits = 6;
+        int value = Integer.parseInt(hash, 16);
+        int row = 0;
 
-        long value = 0;
-        for (int i = 0; i < maxDigits; i++) {
-            char c = hash.charAt(maxDigits - 1 - i);
-            int digit = c >= 'A' ? c - 'A' + 10 : c - '0';
-            value += digit * Math.pow(base, i);
+        while (true) {
+            int currentValue = (int) (Math.pow(row, 3) + Math.pow(row, 2) + Math.pow(row, 1) + 1);
+            if (currentValue == value) {
+                return row - 1;
+            } else if (currentValue > value) {
+                return null;
+            }
+            row++;
         }
-
-        return (int) (value / (base * base));
     }
 }
