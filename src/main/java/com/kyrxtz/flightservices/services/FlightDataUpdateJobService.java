@@ -29,7 +29,7 @@ public class FlightDataUpdateJobService {
 
     private int offsetMultiplier = 0;
 
-    @Scheduled(cron = "0 14 17 * * *", zone = "Europe/Athens")
+    @Scheduled(cron = "0 0 03 1 * *", zone = "Europe/Athens")
     public void updateFlightData() {
         System.out.println("Starting updateFlightData Job. Date: "+ LocalDate.now());
         while (offsetMultiplier < 90) {
