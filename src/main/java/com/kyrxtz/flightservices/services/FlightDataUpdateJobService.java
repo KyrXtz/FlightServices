@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,7 +29,7 @@ public class FlightDataUpdateJobService {
 
     private int offsetMultiplier = 0;
 
-    @Scheduled(cron = "0 0 03 1 * *", zone = "Europe/Athens")
+    @Scheduled(cron = "0 14 17 * * *", zone = "Europe/Athens")
     public void updateFlightData() {
         System.out.println("Starting updateFlightData Job. Date: "+ LocalDate.now());
         while (offsetMultiplier < 90) {
@@ -79,8 +80,10 @@ public class FlightDataUpdateJobService {
             newFlight.setDateOfDeparture(Date.valueOf(randomDate));
 
             if (originalEstimatedDepartureTime != null) {
-                LocalDateTime originalLocalDateTime = originalEstimatedDepartureTime.toLocalDateTime();
-                LocalDateTime newEstimatedDepartureTime = LocalDateTime.of(randomDate, originalLocalDateTime.toLocalTime());
+                LocalTime earliestTime = LocalTime.of(0, 0); 
+                LocalTime randomTime = earliestTime.plusHours(random.nextInt(24)).plusMinutes(random.nextInt(12) * 5);
+
+                LocalDateTime newEstimatedDepartureTime = LocalDateTime.of(randomDate, randomTime);
                 newFlight.setEstimatedDepartureTime(Timestamp.valueOf(newEstimatedDepartureTime));
             }
 
