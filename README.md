@@ -1,4 +1,4 @@
-<h1>FlightServicesBackend</h1>
+<h1>FlightServices</h1>
 <p>FlightServicesBackend is a Spring Boot application that provides an API for finding flights, making reservations, and checking in. This project is written in Java and can be used as a back-end for various travel-related applications.</p>
 <h2>Technical Overview</h2>
 <p>The project uses the following technologies:</p>
