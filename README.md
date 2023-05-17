@@ -39,8 +39,14 @@
   <li>Change the username and password appropriately in <code>application.properties</code></li>
  </li> </ol>
 <li>Run the commands present in the sql file to create the database.</li>
+<li>
+    Depending on you Docker configuration, you might need to add these two lines to your application.properties
+    <ol>
+    <li><code>server.port=8080</code></li>
+        <li><code>server.address=0.0.0.0</code></li></ol>
+</li>
 <li>Navigate to the root directory of the project and build the image <br>
  <code>docker build -t flightservices .</code></li>
  <li>Run the image <br>
- <code>docker run --hostname flightservices --name=flightservices --restart=always --link flightservicesserver flightservices  </code></li>
+ <code>docker run --hostname flightservices -p 8080:8080 --name=flightservices --restart=always --link flightservicesserver flightservices  </code></li>
  </ol>
