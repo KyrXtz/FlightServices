@@ -28,7 +28,7 @@
 <ol>
 <li><p>Run these commands to get the latest mysql server docker image.</p>
 <ol><li><code>docker pull mysql/mysql-server:latest </code></li>
-<li><code>docker run -p 3306:3306 --hostname flightservicesserver -e MYSQL_ROOT_PASSWORD=&lt;your-password&gt; -d --name=flightservicesserver mysql/mysql-server:latest mysqld --lower_case_table_names=1 </code></li>
+<li><code>docker run -p 3306:3306 --hostname flightservicesserver -e MYSQL_ROOT_PASSWORD=&lt;your-password&gt; -d --name=flightservicesserver mysql/mysql-server:latest mysqld --lower_case_table_names=1 --restart=always </code></li>
 <li><code>docker exec -it flightservicesserver bash</code></li>
  <li><code>mysql -u root -p</code></li> </ol>
  </li>
@@ -42,5 +42,5 @@
 <li>Navigate to the root directory of the project and build the image <br>
  <code>docker build -t flightservices .</code></li>
  <li>Run the image <br>
- <code>docker run --hostname flightservices --name=flightservices --link flightservicesserver flightservices </code></li>
+ <code>docker run --hostname flightservices --name=flightservices --link flightservicesserver flightservices --restart=always </code></li>
  </ol>
