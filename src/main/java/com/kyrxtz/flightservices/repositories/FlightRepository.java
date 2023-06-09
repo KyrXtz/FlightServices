@@ -14,5 +14,6 @@ public interface FlightRepository extends JpaRepository<Flight,Integer> {
     @Query("from Flight where departureCity=:departureCity and arrivalCity=:arrivalCity and dateOfDeparture=:dateOfDeparture")
     List<Flight> findFlights(@Param("departureCity") String from, @Param("arrivalCity") String to, @Param("dateOfDeparture") Date departureDate);
 
-    void deleteByDateOfDepartureBefore(Date date);
+    @Query("SELECT f FROM Flight f WHERE f.id NOT IN (SELECT r.flight.id FROM Reservation r)")
+    List<Flight> findFlightsWithoutReservations();
 }

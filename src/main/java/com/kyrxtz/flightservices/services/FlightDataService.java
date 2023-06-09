@@ -29,8 +29,10 @@ public class FlightDataService {
     @Transactional
     public void deleteFlightsBeforeDate(LocalDate date) {
         Date sqlDate = Date.valueOf(date);
-        flightRepository.deleteByDateOfDepartureBefore(sqlDate);
-    }
+        List<Flight> flightsToDelete = flightRepository.findFlightsWithoutReservations();
+        flightsToDelete.removeIf(flight -> flight.getDateOfDeparture().after(sqlDate));
+        flightRepository.deleteAll(flightsToDelete);
+    }    
 
     public List<String> getAirportCodes() {
         return airportRepository.getAllAirportCodes();
