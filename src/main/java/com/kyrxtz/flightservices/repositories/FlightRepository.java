@@ -16,4 +16,8 @@ public interface FlightRepository extends JpaRepository<Flight,Integer> {
 
     @Query("SELECT f FROM Flight f WHERE f.id NOT IN (SELECT r.flight.id FROM Reservation r)")
     List<Flight> findFlightsWithoutReservations();
+
+    @Query(value = "SELECT * FROM FLIGHT WHERE DATE_OF_DEPARTURE > CURDATE() ORDER BY RAND() LIMIT 5", nativeQuery = true) //native query is needed because LIMIT clause is only available for mysql
+    List<Flight> findRandomFlights();
+ 
 }

@@ -66,6 +66,11 @@ public class FlightServicesController {
         return flightRepository.findById(id).get();
     }
 
+    @RequestMapping(value = "/flights/random", method = RequestMethod.GET)
+    public List<Flight> findRandomFlights() {
+        return flightRepository.findRandomFlights();
+    }
+
     @RequestMapping(value = "/reservations", method = RequestMethod.POST)
     @Transactional
     public Reservation saveReservation(@RequestBody CreateReservationRequest request){
